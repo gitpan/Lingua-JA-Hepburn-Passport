@@ -1,9 +1,9 @@
 package Lingua::JA::Hepburn::Passport;
 
 use strict;
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
-use encoding "utf-8";
+use utf8;
 use Carp;
 
 our %Map = (
@@ -241,7 +241,7 @@ Lingua::JA::Hepburn::Passport - Hepburn Romanization using Japanese passport rul
   use utf8;
   use Lingua::JA::Hepburn::Passport;
 
-  my $hepburn = Lingua::JA::Hepburne::Passport->new;
+  my $hepburn = Lingua::JA::Hepburn::Passport->new;
   $hepburn->romanize("みやがわ");     # MIYAGAWA
   $hepburn->romanize("おおの");       # ONO
   $hepburn->romanize("かとう");       # KATO
@@ -250,16 +250,20 @@ Lingua::JA::Hepburn::Passport - Hepburn Romanization using Japanese passport rul
   $hepburn->romanize("はっちょう");   # HATCHO
 
   # Indicate long vowels by "h"
-  my $hepburn = Lingua::JA::Hepburne::Passport->new( long_vowels_h => 1 );
+  my $hepburn = Lingua::JA::Hepburn::Passport->new( long_vowels_h => 1 );
   $hepburn->romanize("おおの");       # OHNO
   $hepburn->romanize("かとう");       # KATOH
 
 =head1 DESCRIPTION
 
 Lingua::JA::Hepburn::Passport is a Hiragana/Katakana to Romanization
-engine using Japanese passport rules. There're already some Hepburn
-romanization modules on CPAN but none of them conform to the one used
-in Japanese passport, hence I made another one.
+engine using Japanese passport rules.
+
+=head1 WHY
+
+There is already a couple of Hepburn romanization modules on CPAN (See
+L</"SEE ALSO">), but none of them conform to the conversion rule
+defined in Japanese passport regulation. This one does.
 
 =head1 METHODS
 
@@ -270,9 +274,9 @@ in Japanese passport, hence I made another one.
   $hepburn = Lingua::JA::Hepburn::Passport->new;
   $hepburn = Lingua::JA::Hepburn::Passport->new( long_vowels_h => 1 );
 
-Creates new object. Optionally you can pass I<long_vowels_h> parameter
-to 1, with which this module tries to add I<H> to the long vowels
-I<OO> and I<OU>, as allowed in Japanese passport rules.
+Creates a new object. Optionally you can pass I<long_vowels_h>
+parameter to 1, with which this module tries to add I<H> to the long
+vowels I<OO> and I<OU>, as allowed in Japanese passport rules.
 
 =item romanize
 
@@ -287,7 +291,7 @@ I<$roman> would be all upper case roman letters.
 
 This module doesn't come with I<deromanize> method (yet), which would
 do the Roman to Katakana/Hiragana translation, since I don't think we
-need it. Other modules on CPAN alaredy do the job quite nicely.
+need it. Other modules on CPAN already do the job quite nicely.
 
 =head1 AUTHOR
 
@@ -298,10 +302,10 @@ Tatsuhiko Miyagawa E<lt>miyagawa@bulknews.netE<gt>
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 
-Some of the code algorithm are ripped off from http://www.d-project.com/hebonconv/
+Code algorithm is based on L<http://www.d-project.com/hebonconv/>
 
 =head1 SEE ALSO
 
-L<http://www.seikatubunka.metro.tokyo.jp/hebon/>, L<http://en.wikipedia.org/wiki/Hepburn_romanization>, L<Lingua::JA::Romanize::Kana>
+L<http://www.seikatubunka.metro.tokyo.jp/hebon/>, L<http://en.wikipedia.org/wiki/Hepburn_romanization>, L<Lingua::JA::Romanize::Kana>, L<Lingua::JA::Kana>
 
 =cut
